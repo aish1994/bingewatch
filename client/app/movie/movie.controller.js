@@ -9,10 +9,11 @@ class MovieComponent {
     this.moviedet;
     this.moviecast;
     this.moviedetails;
-    this.cast='';
+    this.TheatreCollection="";
+    this.flag=0;
 
     $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('thing');
+        socket.unsyncUpdates('movieendpoint');
       });
   }
 
@@ -51,6 +52,11 @@ console.log(this.moviedetails);
 this.moviename="";
 this.year="";
 }
+
+delmovie(deletemovie){
+  this.$http.delete('/api/movieendpoints/' + deletemovie._id);
+
+}
   AddMovie(){
   
     for(let m in this.moviecast.crew)
@@ -59,12 +65,28 @@ this.year="";
           this.directorname=this.moviecast.crew[m].name;
         }
     }
-
     for(let m in this.moviecast.cast){
       this.cast+=this.moviecast.cast[m].name+",";
 
     }
-    this.$http.post('/api/movieendpoints',{
+
+
+      var movieTitle=_.pluck(this.moviedetails,'movietitle');
+      console.log('names from db '+movieTitle);
+for(let a in movieTitle){
+  console.log(movieTitle[a]);
+  if(movieTitle[a]==this.moviedet.title){
+    this.flag=0;
+    break;
+  }
+  else {
+    this.flag=1;
+  }
+}
+console.log("flag value"+this.flag);
+if(this.flag==1){
+
+        this.$http.post('/api/movieendpoints',{
       poster:this.moviedet.poster_path,
       movietitle:this.moviedet.title,
       moviegenre:this.moviedet.genres,
@@ -72,7 +94,12 @@ this.year="";
       director:this.directorname,
       language:this.moviedet.spoken_languages,
       duration:this.moviedet.runtime,
-    }); 
+    });
+      }
+      else{
+        alert("hey this movie is already there in your db");
+      }
+
 
 
     }

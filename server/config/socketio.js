@@ -17,6 +17,9 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/moviemappingendpoint/moviemappingendpoint.socket').register(socket);
+  require('../api/paymentendpoint/paymentendpoint.socket').register(socket);
+  require('../api/locationendpoint/locationendpoint.socket').register(socket);
   require('../api/movieendpoint/movieendpoint.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 

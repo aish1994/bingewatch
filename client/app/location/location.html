@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" placeholder="Theatre Name" ng-model="locationCtrl.theatre_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Theatre City" ng-model="locationCtrl.theatre_city" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Theatre Address" ng-model="locationCtrl.address" class="form-control">
+            </div>
+            <div class="form-group">
+                <button ng-click="locationCtrl.savetheatre()" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>THEATRE NAME</th>
+                        <th>CITY</th>
+                        <th>ADDRESS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="p in locationCtrl.Theatres">
+                        <td>{{p.theatre_name}}</td>
+                        <td>{{p.theatre_city}}</td>
+                        <td>{{p.address}}</td>
+                        <td>
+                            <button class="btn btn-warning" ng-click="locationCtrl.searchtheatre(p)" data-toggle="modal" data-target="#exampleModal"><span class="fa fa-pencil-square-o"></span>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="locationCtrl.deltheatre(p)"><span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Theatre details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text"  placeholder="Theatre Name" ng-model="locationCtrl.NewTheatre.theatre_name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="City" ng-model="locationCtrl.NewTheatre.theatre_city" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Address" ng-model="locationCtrl.NewTheatre.address" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" ng-click="locationCtrl.updatetheatre()" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,35 @@
-<div class="navbar navbar-default navbar-inverse navbar-fixed-top" ng-controller="NavbarController">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<style>
+.navbar-default{
+background-color: white;
+color:red;
+}
+.navbar-default .navbar-nav > li > a , .navbar-default .navbar-header .navbar-brand,.navbar-default .navbar-text{
+ color:rgb( 0, 51, 102);
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+  color:#428bca;
+  background-color:white;
+}
+
+  .dropdown-menu {
+  width: 100%; 
+  text-align: center;
+}
+</style>
+
+<script>
+  
+
+
+  </script>
+<script src="https://use.fontawesome.com/dfaeb70792.js"></script>
+</head>
+<body>
+<div class="navbar navbar-default  navbar-fixed-top" ng-controller="NavbarController">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" ng-click="nav.isCollapsed = !nav.isCollapsed">
@@ -15,18 +46,26 @@
             <a ng-href="{{item.link}}"><b>{{item.title}}</b></a>
         </li>
         <li ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
-        <li><a href="/movie"><b>Movies<b></a></li>
+        <li ng-class="{active: nav.isActive('/movie')}"><a href="/movie"><b>Movies</b></a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}"><a href="/signup"><b>Sign up</b></a></li>
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login"><b>Login</b></a></li>
         <li ng-show="nav.isLoggedIn()"><p class="navbar-text"><b>Hello {{ nav.getCurrentUser().name }}</b></p> </li>
-        <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li><a href="#"><b>Location</b></a></li> 
-        <li ng-show="nav.isLoggedIn()"><a href="/logout"><b>Logout</b></a></li>
+        <li ng-class="{active: nav.isActive('/location')}"><a href="/location"><b>theatre</b></a></li>
+        <li ng-class="{active: nav.isActive('/moviemapping')}"><a href="/moviemapping"><b>MM</b></a></li>
+         <li ng-show="nav.isLoggedIn()"><a href="/logout"><b>Logout</b></a></li>
+         <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
 
       </ul>
     </div>
+      <!-- Modal -->
+
   </div>
 </div>
+
+  
+</body>
+</html>
+

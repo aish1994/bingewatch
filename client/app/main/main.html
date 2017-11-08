@@ -1,76 +1,125 @@
-<!-- <header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
-
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
-        <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
-      </ul>
-    </div>
-  </div>
-
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="$ctrl.newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
-      </span>
-    </p>
-  </form>
-</div>
- -->
-
-<!--  <div class="container-fluid">
-   <div class="row">
-      <div class="col-12-sm">  -->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
-
-    <!-- Wrapper for slides -->
     <div class="carousel-inner ">
-      <div class="item active ">
-        <img src="assets/images/movposter.jpg" class="con"alt="Los Angeles" style="width:100%; height:400px">
-      </div>
-
-      <div class="item">
-        <img src="assets/images/movposter1.jpg" alt="Chicago" style="width:100%;height:400px">
-      </div>
-    
-      <div class="item">
-        <img src="assets/images/movposter2.jpg" class="con" alt="New york" style="width:100%;height:400px">
-      </div>
-       <div class="item">
-        <img src="assets/images/movposter3.jpg" class="con" alt="New york" style="width:100%;height:400px">
-      </div>
-       <div class="item">
-        <img src="assets/images/movposter4.jpg" class="con" alt="New york" style="width:100%;height:400px">
-      </div>
-       <div class="item">
-        <img src="assets/images/movposter5.jpg" alt="New york" style="width:100%;height:400px">
-      </div>
+        <div class="item active ">
+            <img src="assets/images/movposter.jpg" class="con" alt="movie poster" style="width:100%; height:400px">
+        </div>
+        <div class="item">
+            <img src="assets/images/movposter1.jpg" alt="Chicago" style="width:100%;height:400px">
+        </div>
+        <div class="item">
+            <img src="assets/images/movposter2.jpg" class="con" alt="New york" style="width:100%;height:400px">
+        </div>
+        <div class="item">
+            <img src="assets/images/movposter3.jpg" class="con" alt="New york" style="width:100%;height:400px">
+        </div>
+        <div class="item">
+            <img src="assets/images/movposter4.jpg" class="con" alt="New york" style="width:100%;height:400px">
+        </div>
+        <div class="item">
+            <img src="assets/images/movposter5.jpg" alt="New york" style="width:100%;height:400px">
+        </div>
     </div>
-
-    <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
     </a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
     </a>
-  </div>
+</div>
+<div class="row">
+    <form>
+
+<!-- 
+ </head>
+
+  <body ng-controller="MainCtrl">
+ 
+  
+  Model:
+    <select ng-model="modelng" ng-options="option.display for option in models | filter:{make:makeng}">
+        <option ng-disabled="true"  ng-selected="true" value="">Select a model</option>
+    </select>
+  </body>
+
+</html> -->
+
+        <div class="col-sm-2">
+            <div class="form-group">
+                <select class="form-control empty" required  ng-click="mainCtrl.FindCity()" ng-model="selectedCity" ng-options=" c.theatre_city for c in mainCtrl.CityName | unique:'theatre_city'">
+                <option value="" disabled selected>City Name</option>
+                </select>
+            </div>
+        </div>
+            <div class="col-sm-2">
+            <div class="form-group">
+               <select class="form-control" ng-model="mainCtrl.selectTheatre" ng-click="mainCtrl.FindCity()">
+                <option  ng-repeat="c in mainCtrl.CityName | filter:{theatre_name:mainCtrl.selectCity} " value="{{c.theatre_name}}">{{c.theatre_name}}</option>
+                <!-- <option value="" disabled selected>Theatre</option> -->
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <select class="form-control empty"  required placeholder="selectmovie" id="selectTheatre" >
+                    <option  value="" disabled selected hidden>Select Theatre</option>
+                    <option>{{mdb.movietitle}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <select class="form-control empty" required placeholder="selectmovie" id="selectmovie">
+                    <option  value="" disabled selected hidden>Select Date</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="form-group">
+                <select class="form-control empty"  required placeholder="selectmovie" id="selectmovie">
+                    <option  value="" disabled selected hidden>Timings</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <div class="form-group">
+                <select class="form-control empty"  required placeholder="selectmovie" id="selectmovie">
+                    <option  value="" disabled selected hidden>Seats</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <button type="button" class="btn btn-primary form-control">BOOK NOW</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal fade" id="myModal" ng-model="mainCtrl.myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="dropdown">
+                    <button class="btn btn btn-outline-dark btn-block dropdown-toggle leftalign " type="button" data-toggle="dropdown" ng-click="mainCtrl.FindCity()">Select City...<span class="caret"></span></button>
+                    <ul id="mycity" class="dropdown-menu drpstretch" >
+                        <li ng-repeat="c in mainCtrl.Theatres | unique:'theatre_city'" ng-click="mainCtrl.chooseCity(c.theatre_city)" >
+                            {{c.theatre_city}}
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

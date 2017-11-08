@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bwApp', ['bwApp.auth', 'bwApp.admin', 'bwApp.constants', 'ngCookies', 'ngResource',
-    'ngSanitize', 'ngRoute', 'btford.socket-io', 'validation.match'
+    'ngSanitize', 'ngRoute','ui', 'ui.filters', 'btford.socket-io', 'validation.match'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider.otherwise({

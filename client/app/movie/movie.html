@@ -8,15 +8,15 @@
             <input type="text" placeholder="Movie Year" ng-model="movieCtrl.year" class="form-control">
          </div>
          <div class="form-group">
-            <button class="btn btn-success" ng-click="movieCtrl.FindMovie()">Search Movie</button>
+            <button class="btn btn-success" data-target="#firsttable" ng-click="movieCtrl.FindMovie()">Search Movie</button>
          </div>
       </div>
    </div>
 </div>
 <div class="container-fluid">
-   <div class="row">
+   <div class="row ">
       <div class="col-12-sm">
-         <table class="table">
+         <table class="table"  id="firsttable">
             <thead>
                <tr>
                   <th></th>
@@ -30,7 +30,7 @@
                </tr>
             </thead>
             <tbody>
-               <tr>
+               <tr >
                   <td><img width="150px" height="150px" alt="" src="https://image.tmdb.org/t/p/w500/{{movieCtrl.moviedet.poster_path}}"></td>
                   <td>{{movieCtrl.moviedet.title}}</td>
                   <td>
@@ -43,6 +43,7 @@
                   </td>
                   <td>{{movieCtrl.moviedet.runtime}}</td>
                   <td><button class="btn btn-info" ng-click="movieCtrl.AddMovie()">Add Movie</button></td>
+                   
                </tr>
             </tbody>
          </table>
@@ -67,7 +68,7 @@
             </thead>
             <tbody>
                <tr ng-repeat="mdb in movieCtrl.moviedetails">
-      <td><img width="150px" height="150px" alt="imgage not available" src="https://image.tmdb.org/t/p/w500/{{mdb.poster}}"></td>
+      <td><img width="150px" height="150px" alt="image not available" src="https://image.tmdb.org/t/p/w500/{{mdb.poster}}"></td>
                <td>{{mdb.movietitle}}</td>
                <td><div ng-repeat="g in mdb.moviegenre">{{g.name}} </div>
                   </td>
@@ -77,6 +78,10 @@
                      <div ng-repeat="l in mdb.language">{{l.name}} </div>
                   </td>
                   <td>{{mdb.duration}}</td>
+                  <td>
+                            <button class="btn btn-danger" ng-click="movieCtrl.delmovie(mdb)"><span class="fa fa-trash"></span>
+                            </button>
+                  </td>
                </tr>
             </tbody>
          </table>

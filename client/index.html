@@ -7,7 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
-    <title></title>
+    <link rel="shortcut icon" href="./assets/images/cinema.ico"/>
+    <title>BINGE WATCH</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -64,9 +65,13 @@
       <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-dropdown-multiselect/2.0.0-beta.10/src/angularjs-dropdown-multiselect.js"></script>
     <!-- endbuild -->
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.js"></script>
+      <script src="https://fastcdn.org/Underscore.js/1.8.3/underscore-min.js"></script>
       <!-- injector:js -->
       <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
@@ -78,10 +83,16 @@
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/admin/admin.router.js"></script>
       <script src="app/app.constant.js"></script>
+      <script src="app/location/location.controller.js"></script>
+      <script src="app/location/location.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/movie/movie.controller.js"></script>
       <script src="app/movie/movie.js"></script>
+      <script src="app/moviemapping/moviemapping.controller.js"></script>
+      <script src="app/moviemapping/moviemapping.js"></script>
+      <script src="app/payment/payment.controller.js"></script>
+      <script src="app/payment/payment.js"></script>
       <script src="components/auth/auth.service.js"></script>
       <script src="components/auth/interceptor.service.js"></script>
       <script src="components/auth/router.decorator.js"></script>
