@@ -26,6 +26,17 @@ class NavbarController {
     return route === this.$location.path();
   }
 
+  checklogin(){
+    if(this.isLoggedIn()){
+              this.$location.path('/rating');
+
+         }else {
+            alert("please login before giving a rating");
+            this.$location.path('/login');
+
+         }
+  }
+
 }
 
 angular.module('bwApp')

@@ -1,0 +1,46 @@
+
+<!--  <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <input type="text" ng-model="dateshowtimeCtrl.MovieName" class="form-control">
+    </div>
+  </div>
+</div>  -->
+<button  ng-click="dateshowtimeCtrl.changingdate()" type=button class="btn btn-info">Click to show all active dates</button>
+<br>
+<br>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-7">
+			<table >
+				<tr>
+					<td ng-repeat="p in dateshowtimeCtrl.datesofweek| unique:'p'">
+						<div class="col-sm-1">
+						<button ng-click="dateshowtimeCtrl.gettheatres(p,dateshowtimeCtrl.MovieName,dateshowtimeCtrl.cityName)" type=button class="btn btn-primary">{{p}}</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered">
+				<tr ng-repeat="q in dateshowtimeCtrl.finaltheatrelist">
+				<td>{{q.theatrename}}</td>
+				<td ng-repeat="s in q.movietiming"><a ng-click="dateshowtimeCtrl.savetime(s,q.theatrename)" href="/seating">{{s}}</a>
+				</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+

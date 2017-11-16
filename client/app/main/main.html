@@ -33,93 +33,87 @@
     <span class="sr-only">Next</span>
     </a>
 </div>
-<div class="row">
-    <form>
+<br>
+<br>
 
-<!-- 
- </head>
+<div class="container-fluid">
+<div class="row ">
+    <div ng-repeat="c in mainCtrl.mappingdetails | unique:'moviename'">
+  <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
+    <div class="thumbnail">
+         <div ng-repeat="p in mainCtrl.moviedetails| filter:{movietitle:c.moviename}">
+     <img width="100%" height="200px" alt="image not available" src="https://image.tmdb.org/t/p/w500/{{p.poster}}">
+    <div class="text-center"><h5>{{c.moviename}}</h5></div>
+     <div><span class="label label-default">Duration:</span>{{p.duration}} mins<br> <!-- <button style="float:right" class="btn btn-sm btn-primary" ng-click="mainCtrl.giveRating(c.moviename)">Rate Movie</button></div> -->
+     <span ng-repeat="w in p.language"><span class="label label-danger">{{w.name}}</span> 
+        </span><br>
+     <span ng-repeat="q in p.moviegenre"><span class="label label-info">{{q.name}}</span>
+        </span><br>
 
-  <body ng-controller="MainCtrl">
- 
-  
-  Model:
-    <select ng-model="modelng" ng-options="option.display for option in models | filter:{make:makeng}">
-        <option ng-disabled="true"  ng-selected="true" value="">Select a model</option>
-    </select>
-  </body>
+        <!-- <a href="/dateshowtime">
+ -->       <button class="btn btn-block btn-danger" ng-click="mainCtrl.selectedMovie(c.moviename)" data-toggle="modal" data-target="#exampleModal">Buy Tickets</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <input type="text" ng-model="mainCtrl.MName" class="form-control">
+      </div>
+      <div class="form-group">
+        <a href="/mapping" ng-click="mainCtrl.StoreData()" class="btn btn-success">Submit</a>
+      </div>
+    </div>
+  </div> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-</html> -->
-
-        <div class="col-sm-2">
-            <div class="form-group">
-                <select class="form-control empty" required  ng-click="mainCtrl.FindCity()" ng-model="selectedCity" ng-options=" c.theatre_city for c in mainCtrl.CityName | unique:'theatre_city'">
+            <div class="modal-body">
+                <form name="seatingDetails">
+                <div class="form-group">
+                <select class="form-control empty" required  ng-click="mainCtrl.FindCity()" ng-model="mainCtrl.selectedCity"  ng-options=" c.city for c in mainCtrl.CityName | unique:'city'">
                 <option value="" disabled selected>City Name</option>
                 </select>
             </div>
-        </div>
-            <div class="col-sm-2">
-            <div class="form-group">
-               <select class="form-control" ng-model="mainCtrl.selectTheatre" ng-click="mainCtrl.FindCity()">
-                <option  ng-repeat="c in mainCtrl.CityName | filter:{theatre_name:mainCtrl.selectCity} " value="{{c.theatre_name}}">{{c.theatre_name}}</option>
-                <!-- <option value="" disabled selected>Theatre</option> -->
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                <select class="form-control empty"  required placeholder="selectmovie" id="selectTheatre" >
-                    <option  value="" disabled selected hidden>Select Theatre</option>
-                    <option>{{mdb.movietitle}}</option>
+            
+                <div class="form-group">
+                <select class="form-control empty" ng-model="mainCtrl.selectedclass" ng-required="true" placeholder="selectmovie" id="selectclass">
+                    <option  value="" disabled selected hidden>Select Class</option>
+                    <option>Gold</option>
+                    <option>Premium</option>
                 </select>
             </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                <select class="form-control empty" required placeholder="selectmovie" id="selectmovie">
-                    <option  value="" disabled selected hidden>Select Date</option>
+
+             <!--    <div class="form-group">
+                <select class="form-control empty" ng-model="mainCtrl.selectedseats" ng-required="true" placeholder="selectmovie" id="selectseats">
+                    <option  value="" disabled selected hidden>Select seats</option>
                     <option>1</option>
                     <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
                 </select>
+            </div> -->
+              </form>
             </div>
-        </div>
-        <div class="col-sm-1">
-            <div class="form-group">
-                <select class="form-control empty"  required placeholder="selectmovie" id="selectmovie">
-                    <option  value="" disabled selected hidden>Timings</option>
-                    <option>1</option>
-                    <option>2</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-sm-1">
-            <div class="form-group">
-                <select class="form-control empty"  required placeholder="selectmovie" id="selectmovie">
-                    <option  value="" disabled selected hidden>Seats</option>
-                    <option>1</option>
-                    <option>2</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                <button type="button" class="btn btn-primary form-control">BOOK NOW</button>
-            </div>
-        </div>
-    </form>
-</div>
-<div class="modal fade" id="myModal" ng-model="mainCtrl.myModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="dropdown">
-                    <button class="btn btn btn-outline-dark btn-block dropdown-toggle leftalign " type="button" data-toggle="dropdown" ng-click="mainCtrl.FindCity()">Select City...<span class="caret"></span></button>
-                    <ul id="mycity" class="dropdown-menu drpstretch" >
-                        <li ng-repeat="c in mainCtrl.Theatres | unique:'theatre_city'" ng-click="mainCtrl.chooseCity(c.theatre_city)" >
-                            {{c.theatre_city}}
-                            <div class="divider"></div>
-                        </li>
-                    </ul>
-                </div>
+      
+            <div class="modal-footer">
+
+
+<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          <a href="/dateshowtime"><button type="button" ng-click="mainCtrl.sessionStore()" id="myBtn" class="btn btn-success" ng-disabled="seatingDetails.$invalid">Proceed</button></a>
             </div>
         </div>
     </div>
 </div>
+

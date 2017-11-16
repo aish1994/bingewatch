@@ -1,0 +1,57 @@
+
+<div class="container-fluid">
+<div class="row ">
+    <div ng-repeat="c in ratingCtrl.mappingdetails | unique:'moviename'">
+  <div class="col-lg-3 col-xs-12 col-sm-6 col-md-4">
+    <div class="thumbnail">
+         <div ng-repeat="p in ratingCtrl.moviedetails| filter:{movietitle:c.moviename}">
+     <img width="100%" height="200px" alt="image not available" src="https://image.tmdb.org/t/p/w500/{{p.poster}}">
+    <div class="text-center"><h5>{{c.moviename}}</h5></div>
+     <div><span class="label label-default">Avg Rating:</span>{{p.avgRating}}</div><!--   <a href="/rating"><button class="btn  btn-primary">Rate this movie</button></div> -->
+
+        <!-- <a href="/dateshowtime">
+ -->       <button class="btn btn-block btn-primary" ng-click="ratingCtrl.selectedMovie(c.moviename)" data-toggle="modal" data-target="#ratingModal">Rate this movie</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+  <div ><h4>Hi {{ ratingCtrl.getCurrentUser().name}} !!</h4></div>
+            <div class="modal-body">
+                <form name="ratingDetails">
+                <div class="form-group">
+                <select class="form-control empty"  ng-model="ratingCtrl.rating" required>
+                 <option  value="" disabled selected hidden>Rate my movie</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                
+                </select>
+            </div>
+
+            <div class="form-group">
+  <label for="comment">User Comment:</label>
+  <textarea ng-model="ratingCtrl.userComment" class="form-control" rows="3" id="comment"></textarea>
+</div>
+        </form>
+    </div>
+
+      <div class="modal-footer">
+      	<div  ng-show="ratingCtrl.rating" >
+      	<button type="button" ng-click="ratingCtrl.saveRating()" data-dismiss="modal" class="btn btn-success">Rate</button>
+      </div>
+</div>
+</div>
+</div>

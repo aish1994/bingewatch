@@ -2,20 +2,14 @@
 
 (function(){
 
-class PaymentComponent {
- constructor($http, $scope, socket, $filter) {
+class ReceiptComponent {
+  constructor($http, $scope, socket, $filter) {
             this.$http = $http;
             this.$filter = $filter;
             this.socket = socket;
-    this.ph_numbr = /^\+?\d{10}$/;
-    this.eml_add = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-    $scope.$on('$destroy', function() {
-                 socket.unsyncUpdates('paymentendpoint');
-             });
-  }
-
-  $onInit(){
+}
+ $onInit(){
       if (typeof(Storage) !== undefined) {
         this.MovieName = sessionStorage.getItem('selectmymovie');
         this.cityName = sessionStorage.getItem('CityName');
@@ -28,41 +22,17 @@ class PaymentComponent {
         this.stime=sessionStorage.getItem('showtimming');
         this.sdate=sessionStorage.getItem('showdate');
         this.theatrename=sessionStorage.getItem('TName');
-        this.cityName = sessionStorage.getItem('CityName');
       }
       console.log(this.total);
       console.log(this.seatslist);
     }
-
-    storeFinalData(){
-      for(let j in this.seatslist){
-        this.seatslist[j].booked=true;
-      }
-      
-      this.$http.post('/api/paymentendpoints', {
-  bookedCityName:this.cityName,
- bookedTheatreName:this.theatrename,
- bookedMovieName:this.MovieName,
- bookedSeats:this.noofseats,
- bookedClass:this.clsname,
- bookedDate:this.sdate,
- bookedTime:this.stime,
- bookedSeatNumbers:this.seatslist
-});
-
-console.log(this.seatslist)
-    }
-  
-
 }
 
-
-
 angular.module('bwApp')
-  .component('payment', {
-    templateUrl: 'app/payment/payment.html',
-    controller: PaymentComponent,
-    controllerAs: 'paymentCtrl'
+  .component('receipt', {
+    templateUrl: 'app/receipt/receipt.html',
+    controller: ReceiptComponent,
+    controllerAs: 'receiptCtrl'
   });
 
 })();

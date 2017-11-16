@@ -46,16 +46,19 @@ color:red;
             <a ng-href="{{item.link}}"><b>{{item.title}}</b></a>
         </li>
         <li ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
-        <li ng-class="{active: nav.isActive('/movie')}"><a href="/movie"><b>Movies</b></a></li>
+        <li  ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/movie')}"><a href="/movie"><b>Movies</b></a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li ng-class="{active: nav.isActive('/rating')}" ng-click="nav.checklogin()"><a href="#"><b>Rating</b></a></li> 
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/signup')}"><a href="/signup"><b>Sign up</b></a></li>
         <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login"><b>Login</b></a></li>
         <li ng-show="nav.isLoggedIn()"><p class="navbar-text"><b>Hello {{ nav.getCurrentUser().name }}</b></p> </li>
-        <li ng-class="{active: nav.isActive('/location')}"><a href="/location"><b>theatre</b></a></li>
-        <li ng-class="{active: nav.isActive('/moviemapping')}"><a href="/moviemapping"><b>MM</b></a></li>
+        <li  ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/location')}"><a href="/location"><b>ManageTheatre</b></a></li>
+        <li  ng-show="nav.isAdmin()" ng-class="{active: nav.isActive('/moviemapping')}"><a href="/moviemapping"><b>MovieMapping</b></a></li>
+        <!-- <li ng-class="{active: nav.isActive('/payment')}"><a href="/payment"><b>pay</b></a></li> -->
          <li ng-show="nav.isLoggedIn()"><a href="/logout"><b>Logout</b></a></li>
+
          <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
 
       </ul>

@@ -1,45 +1,39 @@
-<div class="container-fluid">
-<div class="row ">
-  <div class="col-sm-8">
-    <div class="well">
-      <fieldset>
-        <form >
-          <div class="col-sm-12">
+<div class="container">
+  <div class="row ">
+        <form name="basicdetails"> 
+          <div class="well">
+          <fieldset>
             <div class="form-group">
               <select class="form-control empty" required  ng-click="moviemappingCtrl.FindMovie()" ng-model="moviemappingCtrl.selectMovie" ng-options=" m.movietitle for m in moviemappingCtrl.movie">
                 <option value="" disabled selected>Movie</option>
               </select>
             </div>
-          </div>
-          <div class="col-sm-12">
             <div class="form-group">
               <select class="form-control " ng-click="moviemappingCtrl.FindCity()" ng-change="moviemappingCtrl.cityChange()" required  ng-model="moviemappingCtrl.selectCity" ng-options=" c.theatre_city for c in moviemappingCtrl.CityName | unique:'theatre_city'">
                 <option value="" disabled selected>City Name</option>
               </select>
             </div>
-          </div>
-
-          <div  ng-show="moviemappingCtrl.selectCity" fade class="col-sm-12">
-            <div class="col-sm-8">
-              <div class="form-group">
+           
+            <div  ng-show="moviemappingCtrl.selectCity" >
+               <div class="col-sm-10">
+                  <div class="form-group">
                 <select class="form-control " required  ng-click="moviemappingCtrl.FindTheatre()" ng-model="moviemappingCtrl.selectTheatre" ng-options=" x.theatre_name for x in (moviemappingCtrl.TName | filter:{theatre_city:moviemappingCtrl.selectCity.theatre_city})">
                   <option value="" disabled selected>Theatre Name</option>
                 </select>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
               <div class="form-group">
-                <button class="btn btn-primary" ng-click="moviemappingCtrl.theatreListAdd()"><span class="fa fa-plus-circle">Add theatre</span>
+                <button ng-disabled="!moviemappingCtrl.selectTheatre" class="btn btn-primary" ng-click="moviemappingCtrl.theatreListAdd()"><span class="fa fa-plus-circle">Add theatre</span>
                 </button>
               </div>
             </div>
           </div>
-        </form>
-      </fieldset>
-      </div>
-    </div>
-  </div>
- <div class="row">
+        </fieldset>
+        </div>
+
+
+           <div class="row">
 <div ng-repeat="x in moviemappingCtrl.theatreList" style="display:inline-block;margin:10px">
     <div class="alert alert-info alert-dismissible" role="alert">
   <button type="button" ng-click="moviemappingCtrl.theatreListRemove(x)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -47,74 +41,76 @@
 </div>
 </div> 
 </div>
-</div>
-<div class="container-fluid">
-  <div class="row ">
-  <div class="col-sm-8">
-    <div class="well">
-      <fieldset>
-        <form>
-           <div class="col-sm-8">
-          <input class="form-control" type="date" ng-model="moviemappingCtrl.showDate" placeholder="Date" ng-required/>
+
+
+
+
+<div class="row ">
+  <div class="well">
+   <fieldset>
+   <div class="col-sm-8">
+     <input class="form-control" type="date" ng-model="moviemappingCtrl.showDate" placeholder="Date" required>
         </div>
         <div class="col-sm-4">
-          <button class="btn btn-primary" ng-click="moviemappingCtrl.DateListAdd()"><span class="fa fa-plus">Add Date</span>
+          <button class="btn btn-primary" ng-disabled="!moviemappingCtrl.showDate" ng-click="moviemappingCtrl.DateListAdd()"><span class="fa fa-plus">Add Date</span>
                 </button>
               </div>
-        </form>
-      </fieldset>
-      </div>
-    </div>
-  </div>
- 
- <div class="row">
+            </fieldset>
+            </div> 
+        </div>
+
+
+
+
+             <div class="row">
 <div ng-repeat="x in moviemappingCtrl.dateList" style="display:inline-block; margin:10px;">
     <div class="alert alert-info alert-dismissible"  role="alert">
   <button type="button" ng-click="moviemappingCtrl.dateListRemove(x)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <span ng-bind="x.selecteddate"></span>
+    <span ng-bind="x"></span>
 </div>
 </div> 
 </div>
-</div>
 
-<div class="container-fluid">
-  <div class="row ">
-  <div class="col-sm-8">
-    <div class="well">
-      <fieldset>
-        <form>
-          <div class="col-sm-8">
-          <input class="form-control" type="time" ng-model="moviemappingCtrl.showTimings" placeholder="Time" ng-required/>
+
+
+
+
+<div class="row ">
+   <div class="well">
+   <fieldset>
+      <div class="col-sm-8">
+          <input class="form-control" type="time" ng-model="moviemappingCtrl.showTimings" placeholder="Time" required>
         </div>
         <div class="col-sm-4">
-          <button class="btn btn-primary" ng-click="moviemappingCtrl.timeListAdd()"><span class="fa fa-plus">AddTiming</span>
+          <button class="btn btn-primary" ng-disabled="!moviemappingCtrl.showTimings" ng-click="moviemappingCtrl.timeListAdd()"><span class="fa fa-plus">AddTiming</span>
                 </button>
               </div>
-        </form>
-      </fieldset>
-      </div>
-    </div>
-  </div>
-   <div class="row">
+            </fieldset>
+          </div>
+          </div>
+
+
+
+
+
+             <div class="row">
 <div ng-repeat="x in moviemappingCtrl.timeList" style="display:inline-block; margin:10px;">
     <div class="alert alert-info alert-dismissible"  role="alert">
   <button type="button" ng-click="moviemappingCtrl.timeListRemove(x)" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <span ng-bind="x.selectedtime"></span>
+    <span ng-bind="x"></span>
 </div>
 </div> 
 </div>
+</form>
+</div>
 </div>
 
-<div class="container-fluid">
-  <div class="row ">
-  <div class="col-sm-8">
-    <button type="button"  ng-click="moviemappingCtrl.submitMovieMappingDetails()" class="btn btn-primary btn-block"> Submit details </button>
+ <div class="row ">
+  <div class="col-sm-12">
+    <button type="button" ng-disabled="basicdetails.$invalid" ng-click="moviemappingCtrl.submitMovieMappingDetails()" class="btn btn-primary btn-block"> Submit details </button>
   </div>
 </div>
-</div>
 
-
- 
 
 
 

@@ -9,6 +9,10 @@ import path from 'path';
 
 export default function(app) {
   // Insert routes below
+  app.use('/api/receiptendpoints', require('./api/receiptendpoint'));
+  app.use('/api/ratingendpoints', require('./api/ratingendpoint'));
+  app.use('/api/dateshowtimeendpoints', require('./api/dateshowtimeendpoint'));
+  app.use('/api/seatingendpoints', require('./api/seatingendpoint'));
   app.use('/api/moviemappingendpoints', require('./api/moviemappingendpoint'));
   app.use('/api/paymentendpoints', require('./api/paymentendpoint'));
   app.use('/api/locationendpoints', require('./api/locationendpoint'));

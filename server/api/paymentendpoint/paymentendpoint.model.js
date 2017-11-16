@@ -1,11 +1,16 @@
 'use strict';
 
 import mongoose from 'mongoose';
-
+ 
 var PaymentendpointSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+ bookedCityName:String,
+ bookedTheatreName:String,
+ bookedMovieName:String,
+ bookedSeats:Number,
+ bookedClass:String,
+ bookedDate:String,
+ bookedTime:String,
+ bookedSeatNumbers:Array,
 });
 
 export default mongoose.model('Paymentendpoint', PaymentendpointSchema);

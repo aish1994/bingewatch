@@ -24,6 +24,7 @@
          }
 
          savetheatre() {
+            this.theatre_city = this.theatre_city.toLowerCase();
              this.$http.post('/api/locationendpoints', {
                  theatre_name: this.theatre_name,
                  theatre_city: this.theatre_city,

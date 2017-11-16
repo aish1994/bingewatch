@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row "> 
+  	 <div class="alert alert-success">
+    <strong>Success!</strong>Your booking is confirmed! Thankyou for booking...
+  </div>
+</div>
+<div class="row "> 
+          <div class="well">
+
+            <br>
+            <div>Movie Name:<span><strong>{{receiptCtrl.MovieName}}</strong></span></div>
+            <div>Theatre Name:<span><strong>{{receiptCtrl.theatrename}},{{receiptCtrl.cityName}} </strong></span></div>
+            <div>No of seats selected:<span><strong>{{receiptCtrl.noofseats}}</strong></span></div>
+           
+            <div>Class:<span><strong>{{receiptCtrl.clsname}}</strong></span></div>
+         
+            <div>Date:<span><strong>{{receiptCtrl.sdate}}</strong></span></div>
+            <div>Time:<span><strong>{{receiptCtrl.stime}}</strong></span></div>
+          
+                <div >Seat Numbers:<span ng-repeat="m in receiptCtrl.seatslist"</span><span><strong>{{m.letter}}{{m.val}} </strong></span></div>
+            <h5>TOTAL:{{receiptCtrl.total}}</h5>
+        </div>

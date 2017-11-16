@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title></title>
+            <style>
+
+
+.bms table a {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 26%;
+  color: #aaa;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 21px; 
+}
+
+.bms table .available {
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #e74c3c;
+  cursor: pointer; }
+  .bms table .available:hover {
+    background: #e74c3c;
+    color: white; }
+
+.bms table .selected {
+  background: #e74c3c;
+  color: white; }
+
+.bms table .blocked, .block {
+  background: #eaeaea;
+  color: #aaa;
+  box-shadow: 0;
+  border: 0;
+  cursor: default; }
+
+.bms .SRow1 {
+  display: flex; }
+  .bms .SRow1 .itemSeat {
+    margin-left: 15px; }
+
+
+    .dislink{
+    pointer-events: none;
+    background-color: lightgrey;
+}
+
+</style>
+</head>
+<body> 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+        <p>No of Seats:
+            <select class="form-control" ng-model="seatingCtrl.selectedCount" ng-change="seatingCtrl.setAvailCount(seatingCtrl.selectedCount)" ng-click="seatingCtrl.drawSeats(65, 3, 15,1);seatingCtrl.drawSeats(68, 3, 15,2)" ng-options="count as count.val for count in seatingCtrl.quantities">  <option value="" disabled selected>Choose seats</option>
+            </select>
+        </p>
+    </div>
+    <div class="col-sm-2">
+        <p>Class:
+            <select id="classselect" class="seatQuality form-control" ng-change="seatingCtrl.showQuality(seatingCtrl.seatQuality)" ng-model="seatingCtrl.seatQuality" ng-options="i for i in seatingCtrl.seatQualities" name=""></select>   
+            </p>
+        <div>
+        <!-- {{rows | json}} -->
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- button type="button"  ng-click="seatingCtrl.drawSeats(65, 3, 15)" class="btn btn-block btn-danger">click</button></a> -->
+
+
+<div class="container bms" ng-hide="!seatingCtrl.selectedCount">
+  <div class="row">
+     <div class="col-sm-9">
+        <div class="table-responsive">
+            <h4>BOOK YOUR SEATS</h4>
+            Seats left:
+            {{seatingCtrl.selectedCount.val-seatingCtrl.availCount}}<br/>
+            <h4>GOLD</h4>
+            <div >
+             <table class="table gold" style="width: auto;border:1px solid grey">
+                       <tr ng-repeat="row in seatingCtrl.seatingGrid[0]" class="row">
+                    <td class="SRow1">
+                        <div class="itemSeat" ng-repeat="seat in row">
+                            <span ng-show="$first">{{seat.letter}}</span>
+        <a id="{{seat.letter}}+{{seat.val}}" ng-class="{'selected': seat.check, 'available': (!seat.check && !seat.booked),  'blocked': seat.booked}" ng-disabled="seatingCtrl.gisDisabled" ng-click="seatingCtrl.selectSeats(row,seat, seatingCtrl.selectedCount)">{{seat.val}}</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+          <h4>PREMIUM</h4>
+           <div class="" ng-class="">
+             <table id="we" class="table premium" style="width: auto;border:1px solid grey">
+                       <tr ng-repeat="row in seatingCtrl.seatingGrid1[0]" class="row">
+                    <td class="SRow1">
+                        <div class="itemSeat"  ng-repeat="seat in row">
+                            <span ng-show="$first">{{seat.letter}}</span>
+        <a id="pre" ng-class="{'selected': seat.check, 'available': (!seat.check && !seat.booked),'blocked':seat.booked}" ng-disabled="seatingCtrl.seatQuality" ng-click="seatingCtrl.selectSeats(row,seat, seatingCtrl.selectedCount)">{{seat.val}}</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+          </div>
+        </div>
+    </div>
+     <div class="col-sm-3">
+         <div class="well">
+          <h3>Booking summary</h3><br>
+    <div>No of seats selected:<span><strong>{{seatingCtrl.selectedCount.val}}</strong></span></div><hr>
+          <div>Class:<span><strong>{{seatingCtrl.seatQuality}}</strong></span></div><hr>
+          <div >Seat Numbers:<span ng-repeat="m in seatingCtrl.selectedSeatList"</span>{{m.letter}}{{m.val}} </div><hr>
+          <div>Sub Total:{{seatingCtrl.ticketCharge}}</div>
+          <div>Internet Handling fee:{{seatingCtrl.internetCharge}}</div><hr>
+          <h4>TOTAL:{{seatingCtrl.grandTotal}}</h4>  
+         </div>
+         <button type="button"  ng-click="seatingCtrl.storeSeat()" class="btn btn-block btn-danger">Proceed to payment</button>
+        
+      </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>
+
